@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.10)
+project(PhysicsEngine VERSION 1.0)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+include_directories("${CMAKE_SOURCE_DIR}/include")
+include_directories("${CMAKE_SOURCE_DIR}/include/graphics")
+include_directories("${CMAKE_SOURCE_DIR}/include/physics")
+include_directories("${CMAKE_SOURCE_DIR}/include/utils")
+
+# Find SFML installed by Homebrew (or other system-wide install)
+find_package(SFML 2.6.1 COMPONENTS graphics window system REQUIRED)
+
+file(GLOB_RECURSE SOURCES "src/*.cpp")
+
+add_executable(PhysicsEngine ${SOURCES})
+
+# Link against SFML. The components specified in find_package will be linked.
+target_link_libraries(PhysicsEngine sfml-graphics sfml-window sfml-system)
